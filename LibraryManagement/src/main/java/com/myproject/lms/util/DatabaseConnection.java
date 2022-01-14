@@ -12,10 +12,10 @@ public class DatabaseConnection {
 		// username of db admin and password 
 		// port number 
 		String host = "localhost:3306";  // if DB is another machine , that machine IP address should be given
-        String database = "capg";
+        String database = "library";
         String url = "jdbc:mysql://"+ host+"/"+database;
         String username = "root";
-        String password = "admin";
+        String password = "125867";
         
         try {
 

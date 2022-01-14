@@ -38,6 +38,8 @@ public class Books {
 	 * @param bookCategory
 	 * @param authorName
 	 */
+	
+	public Books() {}
 	public Books(int bookId, String bookName, String bookCategory, String authorName) {
 		super();
 		this.bookId = bookId;
