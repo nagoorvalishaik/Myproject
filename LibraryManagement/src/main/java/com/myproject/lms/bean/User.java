@@ -1,34 +1,20 @@
 package com.myproject.lms.bean;
 
 public class User{
-
-	private int userId;
-	/**
-	 * @param userId
-	 * @param userName
-	 * @param gender
-	 * @param branch
-	 * @param designation
-	 * @param year
-	 */
-	private String password=null;
-	public User(int userId, String userName, String gender, String branch, String designation, int year,String pasword) {
-		super();
-		this.userId = userId;
-		this.userName = userName;
-		this.gender = gender;
-		this.branch = branch;
-		this.designation = designation;
-		this.year = year;
-		this.password=password;
-	}
 	
+	private int userId;
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	private String userName;
 	private String gender;
 	private String branch;
 	private String designation;
 	private int year;
-	
+	private String password;
+			
 	public int getUserId() {
 		return userId;
 	}
@@ -71,34 +57,43 @@ public class User{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + userId;
-		return result;
+	
+	/**
+	 * @param userId
+	 * @param userName
+	 * @param gender
+	 * @param branch
+	 * @param designation
+	 * @param year
+	 * @param password
+	 */
+	public User(int userId, String userName, String gender, String branch, String designation, int year,
+			String password) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.gender = gender;
+		this.branch = branch;
+		this.designation = designation;
+		this.year = year;
+		this.password = password;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (userId != other.userId)
-			return false;
-		return true;
-	}
+	
+	
+	
+	
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", password=" + password + ", userName=" + userName + ", gender=" + gender
-				+ ", branch=" + branch + ", designation=" + designation + ", year=" + year + "]";
+		return "User [userId=" + userId + ", userName=" + userName + ", gender=" + gender + ", branch=" + branch
+				+ ", designation=" + designation + ", year=" + year + "]";
 	}
 	
 	
-
+	
+	
+	
+	
+	
 	
 	
 }

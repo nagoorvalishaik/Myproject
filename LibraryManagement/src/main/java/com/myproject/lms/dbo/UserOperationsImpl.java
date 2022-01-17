@@ -1,22 +1,44 @@
 package com.myproject.lms.dbo;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import com.myproject.lms.bean.Books;
+import com.myproject.lms.util.DatabaseConnection;
 
 public class UserOperationsImpl implements UserOperations{
 
+	Connection con=DatabaseConnection.con;
+	PreparedStatement ps;
 	
-	public boolean searchBook(Books book) 
+	public boolean searchBook(String bookname) 
 	{
-		if(book.getBookName()!=null)
+		String sqlQuery="select book_id from library.book where bookname=? ";
+		
+		try
 		{
+			ps=con.prepareStatement(sqlQuery);
+			ps.setString(1, bookname);
 			
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				return true;
+			}
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("Sorry..!!, Books Not AVailable");
 		}
 		return false;
 	}
 
-	public boolean getBook(String bookname) {
+	public Books getBook(String bookname) {
+		return null;
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	public void returnBook(int userid) {

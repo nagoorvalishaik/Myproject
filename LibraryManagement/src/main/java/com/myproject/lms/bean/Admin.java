@@ -2,8 +2,8 @@ package com.myproject.lms.bean;
 
 public class Admin {
 	
-	final String adminName="admin";
-	final String adminPassword="admin@123";
+	private String adminName="admin";
+	private String adminPassword="admin@123";
 
 	
 	public String getAdminName() {

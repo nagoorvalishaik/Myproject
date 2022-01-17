@@ -2,16 +2,21 @@ package com.myproject.lms.ui;
 import java.util.Scanner;
 
 import com.myproject.lms.bean.User;
-import com.myproject.lms.dbo.AdminOperationImpl;
-import com.myproject.lms.dbo.AdminOperations;
+import com.myproject.lms.service.AdminService;
+import com.myproject.lms.service.AdminServiceImpl;
 
 public class SignUp {
 
-	Scanner sc=new Scanner(System.in);
-	Scanner str=new Scanner(System.in);
-	
+	AdminService ser=new AdminServiceImpl();
+
 	public void doSignUp()
-	{
+	{	
+		@SuppressWarnings("resource")
+		Scanner sc=new Scanner(System.in);
+		@SuppressWarnings("resource")
+		Scanner str=new Scanner(System.in);
+		
+		System.out.println("==================");
 		System.out.println("Enter Userid:");
 		int id=sc.nextInt();
 		
@@ -33,10 +38,8 @@ public class SignUp {
 		System.out.println("Enter password:");
 		String pass=str.nextLine();
 		
-		User u=new User(id,name,gender,branch,design,year,pass);
+		User user=new User(id,name,gender,branch,design,year,pass);
+		ser.addUser(user);
 		
-		
-		AdminOperations adop=new AdminOperationImpl();
-		adop.addUser(u);
 	}
 }

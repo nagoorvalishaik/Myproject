@@ -2,8 +2,8 @@ package com.myproject.lms.dbo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
-import com.myproject.lms.Exceptions.InvalidCredentialsException;
 import com.myproject.lms.util.DatabaseConnection;
 
 public class UserCheckImpl implements UserCheck{
@@ -12,7 +12,7 @@ public class UserCheckImpl implements UserCheck{
 	Connection con=DatabaseConnection.con;
 	PreparedStatement ps;
 	
-	public int checkLogin(String username, String password){
+	public boolean checkLogin(String username, String password){
 		
 		String sqlQuery="select userid from library.user where username=? and password=?";
 		
@@ -22,17 +22,18 @@ public class UserCheckImpl implements UserCheck{
 			ps.setString(1,username);
 			ps.setString(2,password);
 			
-			int i=ps.executeUpdate();
 			
-			if(i>0)
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next())
 			{
-				return 1;
+				return true;
 			}
 		}
 		catch(Exception e) {
 			System.out.println("Invalid Credentials...@@Idiot");
 		}
 		
-		return 0;
+		return false;
 	}
 }
