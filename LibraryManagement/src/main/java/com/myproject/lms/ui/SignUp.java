@@ -15,8 +15,9 @@ public class SignUp {
 		Scanner sc=new Scanner(System.in);
 		@SuppressWarnings("resource")
 		Scanner str=new Scanner(System.in);
-		
-		System.out.println("==================");
+		System.out.println();
+		System.out.println("****User Details*****");
+		System.out.println();
 		System.out.println("Enter Userid:");
 		int id=sc.nextInt();
 		

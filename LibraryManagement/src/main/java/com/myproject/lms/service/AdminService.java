@@ -9,6 +9,6 @@ public interface AdminService {
 	public boolean deleteUser(int userid);
 	public User getUser(int userid) throws InvalidUserException;
 	public boolean addBook(Books book);
-	
+	public boolean deleteBook(String name);
 	
 }

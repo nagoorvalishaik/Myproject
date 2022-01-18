@@ -2,12 +2,19 @@ package com.myproject.lms.ui;
 
 import java.util.Scanner;
 
+import com.myproject.lms.Exceptions.InvalidCredentialsException;
+import com.myproject.lms.Exceptions.InvalidUserException;
+import com.myproject.lms.Exceptions.InvalidUserNameException;
+
 public class LibraryPortal {
 
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws InvalidUserException, InvalidUserNameException
 	{
-		System.out.println("======================================");
+		System.out.println("======Library Management System========");
+		System.out.println();
+		System.out.println();
+		System.out.println("*****AdminLogin******");
 		System.out.println("1.User Login");
 		System.out.println("2.Register User");
 		System.out.println("3.Admin Login");
@@ -31,12 +38,13 @@ public class LibraryPortal {
 					
 			case 3:
 					Login admin=new Login();
-			try {
-					admin.doAdminLogin();
+			try 
+			{
+				admin.doAdminLogin();
 			} 
-			catch(Exception e) {
+			catch(InvalidCredentialsException e){
 				
-				System.out.println("Wrong Credentials"+e);
+				System.out.println(e);
 			}
 					break;
 		}

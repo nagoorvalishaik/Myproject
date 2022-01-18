@@ -8,6 +8,8 @@ public interface AdminOperations {
 		public boolean deleteUser(int userid);
 		public User getUser(int userid);
 		public boolean addBook(Books book);
+		public Books getBook(String bookName);
+		public boolean deleteBook(String bookname);
 	
 
 }

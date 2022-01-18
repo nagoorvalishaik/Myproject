@@ -119,10 +119,65 @@ public class AdminOperationImpl implements AdminOperations{
 		}
 		return false;
 	}
+
+
+		public Books getBook(String name){
+		
+			String sqlQuery="select * from library.books where bookname=?";
+			
+			try
+			{
+				ps=con.prepareStatement(sqlQuery);
+				ps.setString(1, name);
+				
+				ResultSet rs=ps.executeQuery();
+				
+				while(rs.next())
+				{
+					int bookId=rs.getInt("bookId");
+					String bookName=rs.getString("bookName");
+					String bookCategory=rs.getString("bookCategory");
+					String authorName=rs.getString("authorName");
+					
+					Books b=new Books(bookId,bookName,bookCategory,authorName);
+					
+					return b;
+				}
+				
+			}
+			catch(Exception e)
+			{
+				System.out.println("Exception while fetching the user"+e);
 	
-	
-	
+			}
+			
+		return null;
 	}
+
+
+		public boolean deleteBook(String bookname) {
+			
+			String sqlQuery="delete from library.books where bookname=?";
+			try
+			{
+				ps=con.prepareStatement(sqlQuery);
+				ps.setString(1,bookname);
+				
+				int i=ps.executeUpdate();
+				
+				if(i==1)
+					System.out.println("Deleted Succesfully...!!!");
+					return true;
+			}
+			catch(Exception e)
+			{
+				System.out.println("Exception while deleting user....!!!");
+			}
+			return false;
+		}
+
+
+}
 
 
 	

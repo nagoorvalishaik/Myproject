@@ -60,6 +60,18 @@ public class AdminServiceImpl implements AdminService{
 			return false;
 		}
 
+		public boolean deleteBook(String name) {
+			
+			try
+			{
+				ad.deleteBook(name);
+			}
+			catch(Exception e) {
+				System.out.println("Interuption while deleting..!!");
+			}
+			return false;
+		}
+
 		
 
 		
