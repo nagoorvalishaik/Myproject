@@ -11,6 +11,8 @@ import com.myproject.lms.dbo.UserCheck;
 import com.myproject.lms.dbo.UserCheckImpl;
 import com.myproject.lms.service.AdminService;
 import com.myproject.lms.service.AdminServiceImpl;
+import com.myproject.lms.service.UserService;
+import com.myproject.lms.service.UserServiceImpl;
 
 import Filters.AvailableFilters;
 
@@ -20,7 +22,9 @@ public class Login {
 	{
 		@SuppressWarnings("resource")
 		Scanner sc=new Scanner(System.in);
-		
+		@SuppressWarnings("resource")
+		Scanner str=new Scanner(System.in);
+
 		System.out.println("Enter Username:");
 		String username=sc.nextLine();
 		
@@ -32,10 +36,71 @@ public class Login {
 			boolean result;
 			result=ucheck.checkLogin(username, password);
 			
-			if(result==true)
+			if(result)
 			{
-				System.out.println("Login successfull...!!");
+				UserService uservice=new UserServiceImpl();
+
+				System.out.println("Login successfull...!!\n\n");
+				System.out.println("*****User Services******\n");
+				System.out.println("1.Serach Book");
+				System.out.println("2.Get Book");
+				System.out.println("3.Return Book\n\n");
+				
+				int option=sc.nextInt();
+				
+				switch(option) 
+				{
+					case 1: System.out.println("Enter BookName :");
+					        String name=str.nextLine();
+					        try
+					        {
+					        	uservice.searchBook(name);
+					        }
+					        catch(Exception e) 
+					        {
+					        	System.out.println("Book Not Available..!!!");
+					        }
+					        break;
+					        
+					        
+					        
+					case 2:		System.out.println("Enter BookName :");
+								String bookname=str.nextLine();
+								System.out.println();
+						        try
+						        {
+						        	boolean res=uservice.searchBook(bookname);
+						        	if(res)
+						        	{
+						        		System.out.println();
+						        		System.out.println("Enter Your Id to Confirm :");
+						        		int id=sc.nextInt();
+						        		uservice.getBook(id, bookname);
+						        	}
+						        }
+						        catch(Exception e) 
+						        {
+						        	System.out.println(e);
+						        }
+						        break;
+						        
+						        
+					case 3:  
+							System.out.println("Enter Your Id:");
+							int userid=sc.nextInt();
+							try
+							{
+								uservice.returnBook(userid);
+							}
+							catch(Exception e)
+							{
+								System.out.println("Invalid User Id...!!!");
+							}
+							break;
+				}
+				
 			}
+			
 			else
 			{
 				System.out.println("Invalid Credentials..!!");

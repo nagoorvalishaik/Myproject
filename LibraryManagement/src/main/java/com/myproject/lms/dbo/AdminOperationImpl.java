@@ -12,6 +12,7 @@ public class AdminOperationImpl implements AdminOperations{
 
 	Connection con=DatabaseConnection.con;
 	PreparedStatement ps;
+	
 	public boolean addUser(User us) {
 		
 		String sqlQuery="insert into library.user values(?,?,?,?,?,?,?)";

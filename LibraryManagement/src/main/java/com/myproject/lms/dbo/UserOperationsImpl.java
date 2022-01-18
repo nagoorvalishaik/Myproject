@@ -3,8 +3,6 @@ package com.myproject.lms.dbo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import com.myproject.lms.bean.Books;
 import com.myproject.lms.util.DatabaseConnection;
 
 public class UserOperationsImpl implements UserOperations{
@@ -14,7 +12,7 @@ public class UserOperationsImpl implements UserOperations{
 	
 	public boolean searchBook(String bookname) 
 	{
-		String sqlQuery="select book_id from library.book where bookname=? ";
+		String sqlQuery="select bookid from library.books where bookname=? ";
 		
 		try
 		{
@@ -24,31 +22,62 @@ public class UserOperationsImpl implements UserOperations{
 			ResultSet rs=ps.executeQuery();
 			
 			while(rs.next()) {
+				System.out.println("Book Available...!!");
 				return true;
 			}
 			
 		}
 		catch(Exception e)
 		{
-			System.out.println("Sorry..!!, Books Not AVailable");
+			System.out.println("Sorry..!!, Book Not Available"+e);
 		}
 		return false;
 	}
 
-	public Books getBook(String bookname) {
-		return null;
-		// TODO Auto-generated method stub
+	public boolean getBook(int userid,String bookname) {
 		
+		
+		String sqlQuery="insert into library.bookrecords values(?,?)";
+		try
+		{
+			ps=con.prepareStatement(sqlQuery);
+			ps.setInt(1, userid);
+			ps.setString(2, bookname);
+
+			int i=ps.executeUpdate();
+			if(i==1)return true;
+			return false;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception occured at Inserting Data...!!\n\n");
+		}
+		return false;
 	}
 
-	public void returnBook(int userid) {
-		// TODO Auto-generated method stub
+	public boolean returnBook(int userid) {
 		
+		String sqlQuery="delete from library.bookrecords where userid=?";
+		
+		try
+		{
+			ps=con.prepareStatement(sqlQuery);
+			ps.setInt(1,userid);
+			
+			int i=ps.executeUpdate();
+			
+			if(i==1)
+				System.out.println("Returned Succesfully...!!!");
+				return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception While Returning....!!!");
+		}
+		return false;
 	}
 
-	public void payFine(int userid) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
+	
 }
