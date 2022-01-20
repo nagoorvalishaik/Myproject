@@ -1,5 +1,4 @@
 package com.myproject.lms.service;
-import com.myproject.lms.Exceptions.InvalidUserException;
 import com.myproject.lms.bean.Books;
 import com.myproject.lms.bean.User;
 import com.myproject.lms.dbo.AdminOperationImpl;
@@ -13,7 +12,7 @@ public class AdminServiceImpl implements AdminService{
 		{
 			try {
 					
-					ad.addUser(user);
+					return ad.addUser(user);
 				}
 				catch(Exception e) {
 					System.out.println("Interuption while adding user"+e);
@@ -25,7 +24,7 @@ public class AdminServiceImpl implements AdminService{
 			{
 				try 
 				{
-					ad.deleteUser(userid);
+					return ad.deleteUser(userid);
 				}
 				catch(Exception e)
 				{
@@ -35,15 +34,18 @@ public class AdminServiceImpl implements AdminService{
 					return false;
 			}
 
-		public User getUser(int id)throws InvalidUserException
+		public User getUser(int id)
 		{
 		
-			User user=ad.getUser(id);
-			if(user == null)
+			try 
 			{
-				throw new InvalidUserException();
+				return ad.getUser(id);
 			}
-			return user;
+			catch(Exception e) 
+			{
+				System.out.println("User not Available"+e);
+			}
+			return null;
 			
 		}
 
@@ -60,16 +62,32 @@ public class AdminServiceImpl implements AdminService{
 			return false;
 		}
 
-		public boolean deleteBook(String name) {
+		public boolean deleteBook(String name) 
+		{
 			
 			try
 			{
-				ad.deleteBook(name);
+				return ad.deleteBook(name);
 			}
-			catch(Exception e) {
+			catch(Exception e) 
+			{
 				System.out.println("Interuption while deleting..!!");
 			}
 			return false;
+		}
+		
+		public Books getBook(String name)
+		{
+			try
+			{
+				return ad.getBook(name);
+			}
+			catch(Exception e)
+			{
+				System.out.println("Book not available....!!!");
+			}
+			return null;
+			
 		}
 
 		

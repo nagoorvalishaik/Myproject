@@ -27,6 +27,8 @@ public class AdminFilterServiceImpl implements AdminFilterService{
 		return null;
 	}
 
+// 	
+	
 	public Books FilterByBookName(String name) 
 	{
 		if(name!=null) 
@@ -35,6 +37,15 @@ public class AdminFilterServiceImpl implements AdminFilterService{
 		}
 		return null;
 
+	}
+
+	public List<Books> FilterByYear(int year) {
+		
+		if(year!=0) 
+		{
+			return filterOperations.FilterByYear(year);
+		}
+		return null;
 	}
 		
 }

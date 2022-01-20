@@ -52,9 +52,9 @@ public class AdminOperationImpl implements AdminOperations{
 			
 			int i=ps.executeUpdate();
 			
-			if(i==1)
+			if(i==1) {
 				System.out.println("Deleted Succesfully...!!!");
-				return true;
+				return true; }
 		}
 		catch(Exception e)
 		{
@@ -101,7 +101,7 @@ public class AdminOperationImpl implements AdminOperations{
 
 	public boolean addBook(Books book) {
 		
-		String sqlQuery="insert into library.books values(?,?,?,?)";
+		String sqlQuery="insert into library.books values(?,?,?,?,?)";
 		try
 		{
 			ps=con.prepareStatement(sqlQuery);
@@ -109,6 +109,7 @@ public class AdminOperationImpl implements AdminOperations{
 			ps.setString(2, book.getBookName());
 			ps.setString(3, book.getBookCategory());
 			ps.setString(4, book.getAuthorName());
+			ps.setInt(5, book.getYearOfPublication());
 			
 			int i=ps.executeUpdate();
 			if(i==1)return true;
@@ -139,8 +140,9 @@ public class AdminOperationImpl implements AdminOperations{
 					String bookName=rs.getString("bookName");
 					String bookCategory=rs.getString("bookCategory");
 					String authorName=rs.getString("authorName");
+					int yearOfPublication=rs.getInt("YearOfPublication");
 					
-					Books b=new Books(bookId,bookName,bookCategory,authorName);
+					Books b=new Books(bookId,bookName,bookCategory,authorName,yearOfPublication);
 					
 					return b;
 				}
@@ -166,9 +168,10 @@ public class AdminOperationImpl implements AdminOperations{
 				
 				int i=ps.executeUpdate();
 				
-				if(i==1)
+				if(i==1) {
 					System.out.println("Deleted Succesfully...!!!");
 					return true;
+				}
 			}
 			catch(Exception e)
 			{

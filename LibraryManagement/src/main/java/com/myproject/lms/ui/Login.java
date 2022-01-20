@@ -58,7 +58,7 @@ public class Login {
 					        }
 					        catch(Exception e) 
 					        {
-					        	System.out.println("Book Not Available..!!!");
+					        	System.out.println("Book Not Available..!!!"+e);
 					        }
 					        break;
 					        
@@ -146,12 +146,16 @@ public class Login {
 							
 					case 2: System.out.println("Enter userId:");
 					     	int userid=sc.nextInt();
-							service.deleteUser(userid);
+							if(service.deleteUser(userid)==false)
+								System.out.println("User Not Available...!!");
 							break;
 					
 					case 3:	System.out.println("Enter userId:");
 							 int id=sc.nextInt();
-							 System.out.println(service.getUser(id));
+							 if(service.getUser(id)==null)
+								 	System.out.println("User Not Available...!!");
+							 else
+								 System.out.println(service.getUser(id));
 							 break;
 							 
 					case 4: System.out.println("Enter BookId:");
@@ -176,7 +180,10 @@ public class Login {
 							
 					case 6: System.out.println("Enter bookName :");
 							String bookname=str.nextLine();
-							service.deleteBook(bookname);
+							if(service.deleteBook(bookname)==false)
+							{
+								System.out.println("Book Not Available to delete...!!!");
+							}
 							break;
 				}
 				

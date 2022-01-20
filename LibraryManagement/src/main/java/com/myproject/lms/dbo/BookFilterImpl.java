@@ -35,13 +35,15 @@ public class BookFilterImpl implements BookFilters{
 				Books book=new Books(bookId,bookName,bookCategory,authorName);
 				booksList.add(book);
 			}
-			return booksList;
-			
-		} catch (SQLException e) {
+			if(booksList!=null)
+				return booksList;
+
+		} catch (Exception e) {
 			System.out.println("Exception in getting books by category"+e);
 		}
 		
 		return null;
+
 	}
 
 	public List<Books> FilterByAuthorName(String Name) 
@@ -74,7 +76,8 @@ public class BookFilterImpl implements BookFilters{
 		return null;
 	}
 
-	public Books FilterByBookName(String name) {
+	public Books FilterByBookName(String name) 
+	{
 
 		String sqlQuery="select * from library.books where bookname=?";
 		
@@ -104,6 +107,40 @@ public class BookFilterImpl implements BookFilters{
 		return null;
 	}
 
+	public List<Books> FilterByYear(int year) 
+	{
+		
+		String sqlQuery="select * from library.books where publishedyear>=?";
+		List<Books> booksByYear =new ArrayList<Books>();
+		
+		try {
+			ps = con.prepareStatement(sqlQuery);
+			ps.setInt(1,year);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				
+				int bookId=rs.getInt("bookId");
+				String bookName=rs.getString("bookName");
+				String bookCategory=rs.getString("category");
+				String authorName=rs.getString("authorName");
+				int publishedYear=rs.getInt("publishedYear");
+				
+				Books book=new Books(bookId,bookName,bookCategory,authorName,publishedYear);
+				booksByYear.add(book);
+			}
+			return booksByYear;
+			
+		} catch (SQLException e) {
+			System.out.println("Exception in getting books by name"+e);
+		}
+		
+		return null;
+	}
+	
+	
+	
 	
 		
 }

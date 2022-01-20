@@ -19,8 +19,10 @@ public class AvailableFilters {
 	
 			System.out.println("1.Books by Author");
 			System.out.println("2.Books by Name");
-			System.out.println("3.Book by Category\n");
+			System.out.println("3.Book by Category");
+			System.out.println("4.Sort Book by Year\n");
 			
+			SortbookByPublishYear sby=new SortbookByPublishYear();
 			AvailableFilters av=new AvailableFilters();
 			Books b=new Books();
 			
@@ -33,13 +35,24 @@ public class AvailableFilters {
 							String author=str.nextLine();
 							list=new ArrayList();
 							list=filters.FilterByAuthorName(author);
-							av.PrintList(list);
+							if(list.size()>0) {
+								av.PrintList(list);
+
+							}else {
+								System.out.println("No Books Available with the Author...!!!");
+							}
 							break;
 							
 				case 2:		System.out.println("Enter Book Name: ");
 							String name=str.nextLine();
 							b=filters.FilterByBookName(name);
-							System.out.println(b);
+							if(b!=null) {
+								System.out.println(b);
+
+							}else {
+								System.out.println();
+								System.out.println("Sorry Book Not Available.....!!");
+							}
 							break;
 			
 							
@@ -47,11 +60,27 @@ public class AvailableFilters {
 							String category=str.nextLine();
 							list=new ArrayList();
 							list=filters.FilterByCategory(category);
-							av.PrintList(list);
+							if(list.size()>0) {
+								av.PrintList(list);
+
+							}else {
+								System.out.println("No Books Available with the Category...!!!");
+							}
 							break;
 							
-				
-				
+							
+				case 4:   System.out.println("Enter Year from where you want books :");
+						  int year=sc.nextInt();
+						  list=new ArrayList();
+						  list=sby.sortByYear(year);
+						  if(list.size()>0) 
+						  {
+								av.PrintList(list);
+
+							}else {
+								System.out.println("No Books Available from that year...!!!");
+							}
+						
 			}
 		}	
 		
