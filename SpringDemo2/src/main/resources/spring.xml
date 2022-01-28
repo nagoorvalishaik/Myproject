@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		
+		
+	<bean class="com.capg.spring.Stocks" id="stock1">
+		<property name="stockId" value="100"></property>
+		<property name="stockName" value="infosys"></property>
+		<property name="bookValue" value="1000"></property>
+		<property name="currentPrice" value="2100"></property>
+		<property name="high52" value="1900"></property>
+		<property name="low52" value="1200"></property>
+	</bean>
+	
+	<bean class="com.capg.spring.Stocks" id="stock2">
+		<property name="stockId" value="101"></property>
+		<property name="stockName" value="Tcs"></property>
+		<property name="bookValue" value="1000"></property>
+		<property name="currentPrice" value="2000"></property>
+		<property name="high52" value="1600"></property>
+		<property name="low52" value="1000"></property>
+	</bean>
+    
+    <bean id="policy" class="com.capg.spring.Policy">
+    	<property name="policyId" value="201"></property>
+		<property name="policyName" value="Life Insurance"></property>
+		<property name="sumAssured" value="10000"></property>
+		<property name="premiumAmount" value="5000"></property>
+    </bean>
+    
+    <bean id="Taxfile" class="com.capg.spring.TaxFile">
+    <property name="fileNumber" value="5001"></property>
+    </bean>
+    
+    
+	<bean class="com.capg.spring.Account" id="Nagoor" autowire="byType">
+	 	<property name="accountNumber" value="1800"></property>
+	 	<property name="accountName" value="Nagoor"></property>
+	 	<property name="balance" value="18000"></property>	 		 	
+	 	<property name="branchName" value="Nellore Main"></property>
+	 	<property name="state" value="Andhra Pradesh"></property>
+	 	<property name="country" value="India"></property>
+	 </bean>
+	 
+	 
+	 <bean class="com.capg.spring.Account" id="Nagoorvali" autowire="byType">
+	 	<property name="accountNumber" value="1801"></property>
+	 	<property name="accountName" value="Nagoorvali"></property>
+	 	<property name="balance" value="15000"></property>	 		 	
+	 	<property name="branchName" value="Nellore Main"></property>
+	 	<property name="state" value="Andhra Pradesh"></property>
+	 	<property name="country" value="India"></property>
+	 	<property name="stocks">
+	 	<list>
+	 	<ref bean="stock1"></ref>
+	 	<ref bean="stock2"></ref>
+	 	</list>
+	 	</property>
+	 </bean>
+ </beans>
+ 
+ 
+  
