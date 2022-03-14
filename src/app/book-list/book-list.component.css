@@ -1,0 +1,12 @@
+table,tr{
+  
+    padding: 100%;
+}
+
+td{
+    font-size: larger;
+    font-weight: 500;
+    font-style: oblique;
+    font-variant: initial;
+    font-feature-settings: "c2sc";
+}

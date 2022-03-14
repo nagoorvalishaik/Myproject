@@ -1,0 +1,26 @@
+h1{
+    margin-bottom: 1%;
+    padding-bottom: 1%;
+    text-align: center;
+    background: -moz-linear-gradient();
+    background-color: lightslategray;
+}
+
+span{
+    width: 4%;
+}
+
+.search{
+    text-align: right;
+    width: 8%;
+    float: right;
+  clear: both;
+}
+
+li{
+    color: brown;
+}
+
+
+
+

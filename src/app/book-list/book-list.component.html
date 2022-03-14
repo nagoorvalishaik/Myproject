@@ -1,0 +1,30 @@
+<table class="table">
+    <thead class="thead-white"> 
+        <tr>
+            <th>Isbn</th>
+           <th>Title</th>
+            <th>Author</th>
+           <th>Category</th>
+           <th>Availabl Stock</th>
+           <th>Price</th>
+           <th></th>
+           <th></th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor='let book of books'>
+          <td>{{book.isbn}}</td> 
+         <td>{{book.title}}</td> 
+          <td>{{book.author}}</td> 
+          <td>{{book.category}}</td> 
+          <td>{{book.quantity}}</td> 
+          <td>{{book.price}}</td>
+          
+        </tr>
+       
+    </tbody>
+
+</table>
+ 
